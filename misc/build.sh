@@ -36,8 +36,9 @@ if $opt_usage; then
 fi
 
 VERSION=$(ruby <<SRC
-require 'yaml'
-print YAML.load_file('_data/info.yml')['version']
+require 'json'
+pkgfile = File.read('package.json')
+print JSON.parse(pkgfile)['version']
 SRC
 )
 

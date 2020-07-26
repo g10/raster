@@ -4,8 +4,9 @@ cd "$(dirname "$0")/.."
 BUILDDIR=_build
 
 VERSION=$(ruby <<SRC
-require 'yaml'
-print YAML.load_file('_data/info.yml')['version']
+require 'json'
+pkgfile = File.read('package.json')
+print JSON.parse(pkgfile)['version']
 SRC
 )
 
